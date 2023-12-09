@@ -8,11 +8,10 @@ def open_box(box, all_boxes, opened_boxes):
 
         return opened_boxes
     for key in box:
-        if key not in opened_boxes:
-            opened_boxes.append(key)
-            opened_boxes = open_box(all_boxes[key], all_boxes, opened_boxes)
-        else:
+        if key in opened_boxes or key > len(all_boxes) - 1:
             continue
+        opened_boxes.append(key)
+        opened_boxes = open_box(all_boxes[key], all_boxes, opened_boxes)
     return opened_boxes
 
 
