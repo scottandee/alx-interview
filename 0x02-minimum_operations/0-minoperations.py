@@ -5,7 +5,7 @@ exactly `n` H characters in a file
 """
 
 
-def minOperations(n: int) -> int:
+def minOperations(n):
     """function that  calculates the fewest
     number of operations needed to result in
     exactly `n` H characters in a file
@@ -18,7 +18,12 @@ def minOperations(n: int) -> int:
         return ops
 
     while True:
-        if total + total <= n:
+        if total == 1:
+            current = total
+            total += current
+            ops += 2
+            continue
+        if n % total == 0:
             current = total
             total += current
             ops += 2
