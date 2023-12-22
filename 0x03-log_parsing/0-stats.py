@@ -12,11 +12,11 @@ num_of_read = 0
 
 try:
     for line in sys.stdin:
+        num_of_read += 1
         r = re.search(
             '^\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}\\s-\\s\\[[\\d -:.]*\\]\\s"GET\\s\\/projects\\/260\\sHTTP\\/1.1"\\s\\d{1,3}\\s\\d{1,4}$',
             line)
         if r:
-            num_of_read += 1
             status = re.search("(?<=1.1\" )\\d{1,3}", line)
             file_size = re.search("\\d{1,4}$", line)
             if status_code_count.get(status.group()):
@@ -24,8 +24,6 @@ try:
                     status.group()) + 1
             else:
                 status_code_count[status.group()] = 1
-
-            print(status_code_count)
             total_file_size = total_file_size + int(file_size.group())
 
         if num_of_read % 10 == 0:
