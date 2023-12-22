@@ -26,11 +26,14 @@ try:
             else:
                 status_code_count[status.group()] = 1
             total_file_size = total_file_size + int(file_size.group())
+        else:
+            continue
 
         if num_of_read % 10 == 0:
             print(f"File size: {total_file_size}")
             for status in sorted(status_code_count):
                 print(f"{status}: {status_code_count[status]}")
+
 except KeyboardInterrupt:
     print(f"File size: {total_file_size}")
     for status in sorted(status_code_count):
