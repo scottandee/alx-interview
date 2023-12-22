@@ -34,7 +34,7 @@ try:
             for status in sorted(status_code_count):
                 print(f"{status}: {status_code_count[status]}")
 
-except KeyboardInterrupt:
+finally:
     print(f"File size: {total_file_size}")
     for status in sorted(status_code_count):
         print(f"{status}: {status_code_count[status]}")
