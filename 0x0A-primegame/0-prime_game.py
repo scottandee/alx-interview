@@ -19,7 +19,7 @@ def isWinner(x, nums):
         prime = [True for i in range(nums[r] + 1)]
         p = 2
         while (p * p <= nums[r] + 1):
-            if (prime[p] == True):
+            if prime[p] is True:
                 for i in range(p * p, nums[r] + 1, p):
                     prime[i] = False
             p += 1
@@ -27,14 +27,13 @@ def isWinner(x, nums):
         for p in range(2, nums[r] + 1):
             if prime[p]:
                 list.append(p)
-        print(list)
         winner = ''
         if len(list) == 0:
             ben += 1
             continue
         for j in range(len(list)):
-            if list[j] == 0: 
-             continue
+            if list[j] == 0:
+                continue
             num = list[j]
             list[j] = 0
             for j in range(j, len(list)):
@@ -44,7 +43,6 @@ def isWinner(x, nums):
                 winner = 'Ben'
             else:
                 winner = 'Maria'
-        print(winner)
         if winner == "Maria":
             maria += 1
         else:
