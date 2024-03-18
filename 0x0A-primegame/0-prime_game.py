@@ -16,6 +16,8 @@ def isWinner(x, nums):
     maria = 0
 
     for r in range(x):
+        # Generate list of prime numbers between
+        # 0 and n
         prime = [True for i in range(nums[r] + 1)]
         p = 2
         while (p * p <= nums[r] + 1):
@@ -23,30 +25,24 @@ def isWinner(x, nums):
                 for i in range(p * p, nums[r] + 1, p):
                     prime[i] = False
             p += 1
-        list = []
+        list_of_primes = []
         for p in range(2, nums[r] + 1):
             if prime[p]:
-                list.append(p)
-        winner = ''
-        if len(list) == 0:
+                list_of_primes.append(p)
+
+        # Ben wins the round if there are no primes
+        # for Maria to choose
+        if len(list_of_primes) == 0:
             ben += 1
             continue
-        for j in range(len(list)):
-            if list[j] == 0:
-                continue
-            num = list[j]
-            list[j] = 0
-            for j in range(j, len(list)):
-                if list[j] % 2 == 0:
-                    list[j] = 0
-            if (j + 1) % 2 != 0:
-                winner = 'Ben'
-            else:
-                winner = 'Maria'
-        if winner == "Maria":
+
+        # Odd number of primes means Maria will win the round
+        # while Even number of primes means Ben will win the round
+        if len(list_of_primes) % 2 != 0:
             maria += 1
         else:
             ben += 1
+
     if maria > ben:
         return 'Maria'
     elif maria == ben:
